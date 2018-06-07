@@ -1,0 +1,50 @@
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>HardShopWare</h1>      
+    <p>Tu tienda y blog de informática</p>
+
+    <?php if(isset($_SESSION['login'])){
+    echo "<span> Conectado como <b>".$_SESSION['login']->getNombre()." </b></span>";
+    echo "<a href='index.php?salir=1'>Cerrar sesión</a>";
+	} ?>
+    
+  </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/Hardshopware/index.php">HardshopWare</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Inicio</a></li>
+        <li><a href="index.php?tienda">Productos</a></li>
+        <li><a href="index.php?blog">Blog</a></li>
+        <li><a href="index.php?about">Sobre nosotros</a></li>
+        <li><a href="index.php?about#contacto">Contacto</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      	<?php if(!isset($_SESSION['login'])){
+        	echo '<li style="color:white" ><a href="index.php?registro"><span class="glyphicon glyphicon-user"></span>¿No tienes cuenta? Regístrate</a></li>';
+    	} ?>
+        
+        <?php if(isset($_SESSION['login'])){
+        	echo '<li><a href="index.php?perfil"><span class="glyphicon glyphicon-user"></span>'.$_SESSION['login']->getNombre().'</a></li>';
+    	} else{
+    		echo '<li><a href="index.php?login"><span class="glyphicon glyphicon-user"></span>Login</a></li>';
+    		}?> 
+        
+        <li><a href="index.php?carrito"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a></li>
+
+        <?php if(isset($_SESSION['login']) && $_SESSION['login']->esAdmin()) echo '<li><a href="index.php?admin"><span class="glyphicon glyphicon-cog"></span>Ir a administración</a></li>'; ?>
+
+      </ul>
+    </div>
+  </div>
+</nav>

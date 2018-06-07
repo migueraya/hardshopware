@@ -1,0 +1,228 @@
+/********** ESTILOS PORTADA PRINCIPAL ********************/
+
+
+
+    /* Quuitamos los bordes redondeados por defecto y le añadimos margen */ 
+    .navbar {
+      /*margin-bottom: 50px;*/
+      border-radius: 0;
+    }
+    
+    /* QUITAMOS EL MARGEN POR DEFECTO */ 
+     .jumbotron {
+      margin-bottom: 0;
+      background: url("../imagenes/fondo_jumbotron.png");
+      color:white;
+    }
+
+    .jumbotron a{
+      color:white;
+      margin-left: 15px;
+    }
+
+    /* AÑADE UN COLOR DE FONDO GRIS Y PADDING AL FOOTER */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+      margin-top: 20px;
+    }
+
+
+    /********** ESTILOS SLIDER ********************/
+
+    .col-item
+{
+    border: 1px solid #E1E1E1;
+    border-radius: 5px;
+    background: #FFF;
+}
+.col-item .photo img
+{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.col-item .info
+{
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    margin-top: 1px;
+}
+
+.col-item:hover .info {
+    background-color: #F5F5DC;
+}
+.col-item .precio
+{
+    /*width: 50%;*/
+    float: left;
+    margin-top: 5px;
+}
+
+.col-item .precio h5
+{
+    line-height: 20px;
+    margin: 0;
+}
+
+.precio-text-color
+{
+    color: #219FD1;
+}
+
+.col-item .info .rating
+{
+    color: #777;
+}
+
+.col-item .rating
+{
+    /*width: 50%;*/
+    float: left;
+    font-size: 17px;
+    text-align: right;
+    line-height: 52px;
+    margin-bottom: 10px;
+    height: 52px;
+}
+
+.col-item .separator
+{
+    border-top: 1px solid #E1E1E1;
+}
+
+.clear-left
+{
+    clear: left;
+}
+
+.col-item .separator p
+{
+    line-height: 20px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.col-item .separator p span
+{
+  font-weight: bold;
+  text-decoration: underline;
+  
+}
+
+
+.col-item .separator p i
+{
+    margin-right: 5px;
+}
+.col-item .btn-add
+{
+    width: 50%;
+    float: left;
+}
+
+.col-item .btn-add
+{
+    border-right: 1px solid #E1E1E1;
+}
+
+.col-item .btn-details
+{
+    width: 50%;
+    float: left;
+    padding-left: 10px;
+}
+.controls
+{
+    margin-top: 20px;
+}
+[data-slide="prev"]
+{
+    margin-right: 10px;
+}
+
+
+/********ESTILOS FOOTER********************/
+.footer {
+  background: #061D25;
+  padding: 10px 0;
+}
+.footer a {
+  color: #70726F;
+  font-size: 20px;
+  padding: 10px;
+  border-right: 1px solid #70726F;
+  transition: all .5s ease;
+}
+.footer a:first-child {
+  border-left: 1px solid #70726F;
+}
+.footer a:hover {
+  color: white;
+}
+
+footer .fa{
+	margin-left: 20px;
+	transform: scale(2);
+}
+
+/*PARA CENTRAR EL TEXTO CON RESPECTO A LOS ICONOS DE LOS REDES SOCIALES*/
+footer p{
+	margin-left: 35px;
+}
+
+
+
+/* ESTILOS ADMINISTRACION*/
+#administracion td{
+  line-height: 100px;
+}
+
+
+#administracion .col-sm-10{
+  margin-top: 20px;
+}
+
+#blog span.fecha{
+  color:#23527c;
+}
+
+
+#blog h5{
+  margin-left: 10px;
+}
+
+#blog h5 i{
+  font-size: 18px;
+}
+
+
+/* Mas vendido */
+div.masvendidos .panel-heading,.panel-footer{
+  text-align: center;
+}
+
+/*PERFIL */
+div#formulario_credenciales button{
+      position: center;
+    }
+
+
+div#formulario_credenciales label.error {
+  color: red;
+}
+   
+
+/* ESTILOS TIENDA */
+#tienda .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+#tienda h1{
+  text-align: center;
+}
+
+#tienda td{
+  line-height: 150px;
+}

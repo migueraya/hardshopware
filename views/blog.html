@@ -1,0 +1,94 @@
+<div id="contenedor" class="container"> 
+<?php
+	if(isset($_SESSION['login'])){
+?>		
+		<button style="margin-left: 75%;" type="button" id="mostrarFormularioPost" class="btn btn-primary">AÑADIR RESEÑA DE PRODUCTO</button>	
+		<div id='formularioBlog' class="container" style="padding: 15px"> 	
+			<?php require_once("vista_formulario_post.phtml"); ?>
+		</div>
+<?php		
+	}
+?>
+
+<div id="blog" class="container" style="border: 1px solid lightBlue; border-radius: 12px;margin-top:20px;">
+	<form action="index.php?blog" method="POST" class="form-inline" >
+  		<label class="mr-sm-2" for="inlineFormCustomSelect">ORDENADOR POR:</label>
+  <select name="ordenarPosts" required>
+    <option value="tittle">Titulo</option>
+    <option value="author">Autor</option>
+    <option value="date">Fecha</option>
+  </select>
+  <select name="ascdesc" class="custom-select mb-2 mr-sm-2 mb-sm-0" required>
+    <option value="ASC">Ascendente</option>
+    <option value="DESC">Descendente</option>
+  </select>
+   <button type="submit" name="ordenar" class="btn btn-primary">Submit</button>
+</form>
+  	<h1> ENTRADAS </h1>	
+
+<?php 
+//si hay orden, tiene prioridad sobre el de por defecto
+if(isset($posts_ordenados)){
+	$lista_post=$posts_ordenados;
+}
+
+if(isset($lista_post)){
+	foreach($lista_post as $p){
+	
+		echo "<div id='".$p->getId()."'>";
+		echo "<hr>"; 
+		echo "<h2>".$p->getTitulo()."</h2>";
+		echo '<h4><span class="glyphicon glyphicon-time"></span> Post de <b>'.$p->getAutor().'</b>, <span class="fecha">'.
+		post::formateaFecha($p->getFecha()).'</span></h4>';
+		echo '<h5><i class="fa">&#xf288;</i> Reseña de  <b>'. producto::obtenerProducto($p->getIdProducto()).'</b></h5>';
+		echo "<p>".$p->getTexto()."</p>";
+		echo "<hr>";
+		echo "</div>";
+		if(isset($_SESSION['login'])){
+		
+		//boton de megusta con los likes totales del post, si tiene un like del mismo autor tiene un estilo diferente
+		post::yamegusta($p->getId());
+
+			echo "<h4>Deja un comentario:</h4>";
+      		echo '<form role="form" action="index.php?blog" method="post" >';
+        	echo '<div class="form-group">';
+          	echo '<textarea name="comentario" class="form-control" rows="3" required></textarea>';
+          	echo '<input type="hidden" name="autorComentario" value="'.$_SESSION['login']->getNombre().'" >';
+          	echo '<input type="hidden" name="idPost" value="'.$p->getId().'" >';
+        	echo '</div>';
+        	echo '<button type="submit" name="comentar" class="btn btn-success">Comentar</button>';
+        	echo '</form>';	
+      		echo '<br><br>';
+		}
+
+		else {
+			echo "<b><span>Necesitas loguearte para poder comentar </span></b>";
+			echo '<a href="index.php?login"> Loguéate </a>'; 
+		}
+		//mostramos los comentarios por cada post
+		echo '<p><span class="badge">'.count($p->getComentarios()).'</span> Comentarios:</p><br>';
+		foreach($p->getComentarios() as $c){
+			echo '<div class="col-sm-2 text-center">';
+          echo '<img src="imagenes/imagen_usuario.png" class="img-circle" height="85" width="85" alt="Avatar">';
+        echo '</div>';
+        echo '<div class="col-sm-10">';
+        echo '<h4><b>'.$c->getAutor().'</b><small> dice: </small></h4>';
+        echo '<p>'.$c->getComentario().'</p>';
+        echo '<hr>';
+    	echo '</br>';
+    	echo '</div>';
+
+
+		}
+
+
+
+
+	}
+}
+
+ ?>
+
+
+</div>
+</div>

@@ -1,0 +1,172 @@
+<?php
+$cookie_name = "user";
+$cookie_value = "John Doe";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
+
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HardShopWare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="views/megusta.js"></script> 
+  <script src="views/cambiocategoria.js"></script> 
+  <script src="js/validarRegistro.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="estilos/estilos.css">
+  <link rel="stylesheet" type="text/css" href="estilos/estilos_sobrenosotros.css">
+
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="views/megusta.js"></script> 
+  <script src="views/cambiocategoria.js"></script> 
+  <script src="js/validarRegistro.js"></script>
+  
+
+
+
+  <script type="text/javascript">
+  	
+  	$(document).ready(function() {
+  		//función para desplegar los detalles de los productos destacados
+  		$(".btn-details").on('click', function(event) {
+  			event.preventDefault();
+        //accedemos a la caja adicional  		
+  			$(this).parent().siblings('.detallesDesplegable').slideToggle("slow");
+  		});	
+
+      //en el blog mostrar formulario para añadir posts cuando se le de al boton
+      $("#formularioBlog #formularioPost").hide();
+
+      $("#mostrarFormularioPost").on('click', function(event) {
+  
+        $("#formularioPost").slideToggle("medium");
+
+      });
+
+      $('#formulario_credenciales').hide();
+      $('#mostrarCredenciales').click(function(event) {
+        $('#formulario_credenciales').slideToggle("fast");
+      });
+
+
+
+      if ($.cookie('modal') == null) {
+          //prohibir que se cierre el modal cuando hacen click fuera de la ventaba o presionan escape
+          $('#ventana').modal({backdrop: 'static', keyboard: false});
+          $('#ventana').modal('show');
+          $('#aceptar').on('click', function(event) {
+            $.cookie('modal', 'true');
+          });
+          }
+
+      
+
+          $("#tienda li").on('click', function(event) {
+            $(this).addClass('active');
+          });
+
+
+  });
+    
+  </script>
+
+
+</head>
+<body>
+<?php 
+
+if(isset($_GET['login'])||isset($_GET['registro']) ){
+  if(isset($_GET['login'])){
+    require_once("views/formulario_login.html");
+  }
+  if(isset($_GET['registro'])){
+    require_once("views/formulario_registro.html");
+  }
+}
+
+else{
+
+//cabecera
+require_once("views/vista_cabecera.html");
+
+
+//slider
+if(!isset($_GET['admin'])){
+  
+  if(isset($_GET['blog'])||isset($_GET['tienda'])||isset($_GET['carrito'])){
+    if(isset($_GET['blog']))require_once("views/blog.html");
+    if(isset($_GET['tienda']))require_once("views/tienda.html");
+    if(isset($_GET['carrito']))require_once("views/carrito.html");
+  }
+  else{
+
+      if(isset($_GET['about'])){
+        require_once("views/vista_sobrenosotros.phtml");
+      } 
+      else{
+        if(isset($_GET['perfil'])){
+          if(isset($_GET['editaPost'])){
+            require_once("views/edicion.phtml");
+          }
+          else require_once("views/perfil.phtml");
+        }
+
+        else{
+          require_once("views/slider_productos.html");
+          require_once("views/blog_destacados.phtml");
+          require_once("views/productos_mas_vendidos.phtml");
+        } 
+      }
+     
+  }
+ 
+}
+else{
+  require_once("views/administracion.phtml");
+}
+
+
+//footer
+require_once("views/vista_footer.html");
+
+}
+?>
+
+
+
+<div id="ventana" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">TU CONFIGURACIÓN DE COOKIES</h4>
+      </div>
+      <div class="modal-body">
+        <p>Las cookies de este sitio se usan para personalizar el contenido y los anuncios, para ofrecer funciones de medios sociales y para analizar el tráfico. Además, compartimos información sobre el uso que haga del sitio web con nuestros partners de medios sociales, de publicidad y de análisis web.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="aceptar" class="btn btn-primary" data-dismiss="modal">Aceptar cookies</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+</body>
+</html>

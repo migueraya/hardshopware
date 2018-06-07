@@ -1,0 +1,91 @@
+
+<div class="container" style="border:1px solid lightblue">
+
+<div class="row">
+        <div class="col-sm-10">
+             <h1 class> Perfil de: <?php echo $_SESSION['login']->getNombre();?> </h1>
+          <button type="button" id="mostrarCredenciales" class="btn btn-warning"> Editar credenciales </button>  
+<br>
+        </div>
+      <div class="col-sm-2"><a class="pull-right"><img title="profile image" class="img-circle img-responsive" src="imagenes/imagen_usuario.png"></a>
+
+      </div>
+</div>
+
+
+<div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+            <div id="formulario_credenciales">
+            	<form id="formularioNuevo" action="index.php" method="POST">
+	            <ul id="perfil" class="list-group">
+	                <li class="list-group-item text-muted"> Perfil</li>
+	                <li class="list-group-item text-right"><span class="pull-left"><strong>Usuario</strong></span> <input name='usuario' type='text' value='<?php echo $_SESSION['login']->getNombre(); ?>' required> </input></li>
+	                <li class="list-group-item text-right"><span class="pull-left"><strong>Email</strong></span> <input name='email' type='email' value='<?php echo $_SESSION['login']->getEmail(); ?>' required></input></li>
+	                <li class="list-group-item text-right"><span class="pull-left"><strong>Pass</strong></span> <input name='contraseña' type='password' value='<?php echo $_SESSION['login']->getContraseña(); ?>' required></input></li>
+	                <li class="list-group-item text-right"><span class="pull-left"><strong>Repite</strong></span> <input name='repite' type='password' placeholder="Repite contraseña" required></input></li>
+	                <li class="list-group-item text-right"><span class="pull-left"><strong>Activado</strong></span><?php if($_SESSION['login']->activado()) echo "Si"; else echo "No"; ?> </li>
+	              	<li class="list-group-item text-right"><span class="pull-left"><strong class="">Administrador </strong></span> <?php if($_SESSION['login']->esAdmin()) echo "Si"; else echo "No"; ?> </li>
+	              	<div class="text-center">
+	              		<button type="submit" name="editarCredenciales" class="btn btn-warning pull-center">Cambiar </button>
+	              	</div>
+	            </ul>
+	            </form>	
+
+           </div>
+          
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Tu Actividad  <i class="fa fa-dashboard fa-1x"></i>
+
+                </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class=""> Posts </strong></span> <?php echo Usuario::totalPosts($_SESSION['login']->getNombre()); ?></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> <?php echo Usuario::totalLikes($_SESSION['login']->getId()); ?></li>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Comentarios</strong></span> <?php echo Usuario::totalComentarios($_SESSION['login']->getNombre()); ?></li>
+            </ul>
+            <div class="panel panel-default">
+                <div class="panel-heading">Social Media</div>
+                <div class="panel-body">	<i class="fa fa-facebook fa-2x"></i>  <i class="fa fa-github fa-2x"></i> 
+                    <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i>  <i class="fa fa-google-plus fa-2x"></i>
+
+                </div>
+            </div>
+        </div>
+        <!--/col-3-->
+
+        <div class="col-sm-9" contenteditable="false" style="">
+            
+            <div id="misposts" class="col-sm-12" style="border: 1px solid lightBlue; border-radius: 12px;">
+                <h3> TUS POSTS</h3>
+            <?php 
+                
+            $consulta="SELECT * FROM posts WHERE author='".$_SESSION['login']->getNombre()."'";
+    
+            $result=$mysqli->query($consulta);
+
+            while($row=$result->fetch_array(MYSQLI_ASSOC)) {
+            echo "<hr>";
+            echo "<h2>".$row['tittle']."</h2>";
+            echo '<h4><span class="glyphicon glyphicon-time"></span> Post de <b>'.$row['author'].'</b>,  <span style="color:#23527c">'.
+            post::formateaFecha($row['date']).'</span></h4>';
+            echo '<h5 class="namCat" ><i class="fa">&#xf288;</i> Reseña de  <b>'. producto::obtenerProducto($row['id_product']).'</b></h5>';
+            echo "<p>".$row['text']."</p>";
+            //imprimimos comentarios
+            $consulta2="SELECT * FROM comentarios WHERE idPost='".$row['id']."'";
+            $result2=$mysqli->query($consulta2);
+
+            $numeroComentarios=$result2->num_rows;
+            echo "<hr>";    
+            echo '<p><span class="badge">'.$numeroComentarios.'</span> Comentarios</p>';
+            echo '<a href="index.php?perfil&eliminaPost='.$row['id'].'" class="btn btn-danger" role="button">Eliminar</a>  <a href="index.php?perfil&editaPost='.$row['id'].'" class="btn btn-warning" role="button">Editar</a>';
+}       
+            ?>
+            </div>
+
+        </div>
+
+
+            <div id="push"></div>
+        </div>    
+
+</div>	
+

@@ -1,0 +1,30 @@
+ 
+    <br><br>
+<div class="masvendidos">
+     <div class="container">    
+      <div class="row">
+        <div class="col-md-9">
+                <h3>LO MÁS VENDIDO EN HARDSHOPWARE</h3>
+            </div>
+
+           <?php
+            $mysqli=Conectar::conexion();
+            $consulta="SELECT * FROM products ORDER BY sales DESC limit 3";
+            $result=$mysqli->query($consulta);
+
+            while($row=$result->fetch_array(MYSQLI_ASSOC)){
+             echo '<div class="col-sm-4">';
+             //el panel puede ser success, danger,primary
+                echo '<div class="panel panel-primary">';
+                  echo '<div class="panel-heading">'.$row['category'].'</div>';
+                  echo '<div class="panel-body"><img src="'.$row['image'].'" class="img-responsive" style="width:350px;height: 260px" alt="Image"></div>';
+                  echo '<div class="panel-footer">'.$row['name'].'</div>';
+                echo '</div>';
+              echo '</div>';
+            }
+
+             echo'</div>';
+          echo'</div><br>'; 
+        echo'</div>';
+
+           ?>

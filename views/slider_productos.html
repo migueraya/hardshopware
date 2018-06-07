@@ -1,0 +1,342 @@
+     <?php
+
+     $mysqli=Conectar::conexion();
+  $consulta="SELECT * FROM products ORDER BY votes DESC limit 8";
+  $result=$mysqli->query($consulta);
+ 
+while($row=$result->fetch_array(MYSQLI_ASSOC)){
+      $lista_productos[]=new producto($row);
+    }
+
+  ?> 
+      
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-9">
+                <h3>
+                    Echa un vistazo a nuestros productos destacados</h3>
+            </div>
+            <div class="col-md-3">
+                <!-- Controles para avanzar o retroceder el slider -->
+                <div class="controls pull-right hidden-xs">
+                    <a class="left fa fa-chevron-left btn btn-primary" href="#carousel-example"
+                        data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-primary" href="#carousel-example"
+                            data-slide="next"></a>
+                </div>
+            </div>
+        </div>
+        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="row">
+
+                
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img src="<?php echo $lista_productos[0]->getImagen(); ?>" class="img-responsive" width="268" height="268" alt="a" />
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="precio col-md-6">
+                                            <h5> <?php echo $lista_productos[0]->getNombre(); ?> </h5>
+                                            <h5 class="precio-text-color">
+                                               <?php echo $lista_productos[0]->getPrecio(); ?>€ </h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-6">
+                                            <i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-shopping-cart"></i><a href="index.php?comprar=<?php echo $lista_productos[0]->getId(); ?>">Añadir al carrito</a></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="#" class="hidden-sm">Más detalles</a></p>
+                                    </div>
+                                    <div style="display:none;" class="detallesDesplegable">
+                                        <div class="separator clear-left">
+                                            <p><span> Votos</span>:<?php echo $lista_productos[0]->getVotos(); ?> </p>
+                                            <p> <span>Ventas</span>:<?php echo $lista_productos[0]->getVentas(); ?> </p>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img st src=" <?php echo $lista_productos[1]->getImagen(); ?>" class="img-responsive" width="268" height="268" alt="a" />
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="precio col-md-6">
+                                            <h5>
+                                                <?php echo $lista_productos[1]->getNombre(); ?></h5>
+                                            <h5 class="precio-text-color">
+                                                <?php echo $lista_productos[1]->getPrecio(); ?>€</h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-6">
+                                            <i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-shopping-cart"></i><a href="index.php?comprar=<?php echo $lista_productos[1]->getId(); ?>">Añadir al carrito</a></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="#" class="hidden-sm">Más detalles</a></p>
+                                    </div>
+                                    <div style="display:none;" class="detallesDesplegable">
+                                        <div class="separator clear-left">
+                                            <p> <span> Votos</span>:<?php echo $lista_productos[1]->getVotos(); ?> </p>
+                                            <p> <span>Ventas</span>:<?php echo $lista_productos[1]->getVentas(); ?> </p>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img src="<?php echo $lista_productos[2]->getImagen(); ?>" class="img-responsive" width="268" height="268" alt="a" />
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="precio col-md-6">
+                                            <h5>
+                                                <?php echo $lista_productos[2]->getNombre(); ?></h5>
+                                            <h5 class="precio-text-color">
+                                                <?php echo $lista_productos[2]->getPrecio(); ?>€</h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-6">
+                                            <i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-shopping-cart"></i><a href="index.php?comprar=<?php echo $lista_productos[2]->getId(); ?>">Añadir al carrito</a></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="#" class="hidden-sm">Más detalles</a></p>
+                                    </div>
+                                    <div style="display:none;" class="detallesDesplegable">
+                                        <div class="separator clear-left">
+                                            <p> <span> Votos</span>:<?php echo $lista_productos[2]->getVotos(); ?> </p>
+                                            <p> <span>Ventas</span>:<?php echo $lista_productos[2]->getVentas(); ?> </p>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img src="<?php echo $lista_productos[3]->getImagen(); ?>" class="img-responsive" width="268" height="268" alt="a" />
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="precio col-md-6">
+                                            <h5>
+                                               <?php echo $lista_productos[3]->getNombre(); ?></h5>
+                                            <h5 class="precio-text-color">
+                                                <?php echo $lista_productos[3]->getPrecio(); ?>€</h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-6">
+                                            <i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-shopping-cart"></i><a href="index.php?comprar=<?php echo $lista_productos[3]->getId(); ?>">Añadir al carrito</a></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="#" class="hidden-sm">Más detalles</a></p>
+                                    </div>
+                                    <div style="display:none;" class="detallesDesplegable">
+                                        <div class="separator clear-left">
+                                            <p> <span> Votos</span>:<?php echo $lista_productos[3]->getVotos(); ?> </p>
+                                            <p> <span>Ventas</span>:<?php echo $lista_productos[3]->getVentas(); ?> </p>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img src="<?php echo $lista_productos[4]->getImagen(); ?>" class="img-responsive" width="268" height="268" alt="a" />
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="precio col-md-6">
+                                            <h5>
+                                                <?php echo $lista_productos[4]->getNombre(); ?></h5>
+                                            <h5 class="precio-text-color">
+                                                <?php echo $lista_productos[4]->getPrecio(); ?>€</h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-6">
+                                            <i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-shopping-cart"></i><a href="index.php?comprar=<?php echo $lista_productos[4]->getId(); ?>">Añadir al carrito</a></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="#" class="hidden-sm">Más detalles</a></p>
+                                    </div>
+                                    <div style="display:none;" class="detallesDesplegable">
+                                        <div class="separator clear-left">
+                                            <p> <span> Votos</span>:<?php echo $lista_productos[4]->getVotos(); ?> </p>
+                                            <p> <span>Ventas</span>:<?php echo $lista_productos[4]->getVentas(); ?> </p>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img src="<?php echo $lista_productos[5]->getImagen(); ?>" class="img-responsive" width="268" height="268" alt="a" />
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="precio col-md-6">
+                                            <h5>
+                                               <?php echo $lista_productos[5]->getNombre(); ?></h5>
+                                            <h5 class="precio-text-color">
+                                                <?php echo $lista_productos[5]->getPrecio(); ?>€</h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-6">
+                                            <i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-shopping-cart"></i><a href="index.php?comprar=<?php echo $lista_productos[5]->getId(); ?>">Añadir al carrito</a></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="#" class="hidden-sm">Más detalles</a></p>
+                                    </div>
+                                    <div style="display:none;" class="detallesDesplegable">
+                                        <div class="separator clear-left">
+                                            <p><span> Votos</span>:<?php echo $lista_productos[5]->getVotos(); ?> </p>
+                                            <p> <span>Ventas</span>:<?php echo $lista_productos[5]->getVentas(); ?> </p>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img src="<?php echo $lista_productos[6]->getImagen(); ?>" class="img-responsive" width="268" height="268" alt="a" />
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="precio col-md-6">
+                                            <h5>
+                                                <?php echo $lista_productos[6]->getNombre(); ?></h5>
+                                            <h5 class="precio-text-color">
+                                                <?php echo $lista_productos[6]->getPrecio(); ?>€</h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-6">
+                                            <i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-shopping-cart"></i><a href="index.php?comprar=<?php echo $lista_productos[6]->getId(); ?>">Añadir al carrito</a></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="#" class="hidden-sm">Más detalles</a></p>
+                                    </div>
+                                    <div style="display:none;" class="detallesDesplegable">
+                                        <div class="separator clear-left">
+                                            <p> <span> Votos</span>:<?php echo $lista_productos[6]->getVotos(); ?> </p>
+                                            <p> <span>Ventas</span>:<?php echo $lista_productos[6]->getVentas(); ?> </p>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img src="<?php echo $lista_productos[7]->getImagen(); ?>" class="img-responsive" width="268" height="268" alt="a" />
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="precio col-md-6">
+                                            <h5>
+                                                <?php echo $lista_productos[7]->getNombre(); ?></h5>
+                                            <h5 class="precio-text-color">
+                                                <?php echo $lista_productos[7]->getPrecio(); ?>€</h5>
+                                        </div>
+                                        <div class="rating hidden-sm col-md-6">
+                                            <i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="precio-text-color fa fa-star"></i><i class="precio-text-color fa fa-star">
+                                            </i><i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="separator clear-left">
+                                        <p class="btn-add">
+                                            <i class="fa fa-shopping-cart"></i><a href="index.php?comprar=<?php echo $lista_productos[7]->getId(); ?>">Añadir al carrito</a></p>
+                                        <p class="btn-details">
+                                            <i class="fa fa-list"></i><a href="#" class="hidden-sm">Más detalles</a></p>
+                                    </div>
+                                    <div style="display:none;" class="detallesDesplegable">
+                                        <div class="separator clear-left">
+                                            <p> <span> Votos</span>: <?php echo $lista_productos[7]->getVotos(); ?> </p>
+                                            <p> <span>Ventas</span>:<?php echo $lista_productos[7]->getVentas(); ?> </p>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+               

@@ -1,0 +1,70 @@
+
+
+<div id="tienda" class="container">
+  <div class="row content">
+    <div class="col-sm-12" >
+    <div class="table-responsive">
+        <h1> Nuestros productos </h1>
+    
+        <form action="index.php?tienda" method="POST" class="form-inline" >
+          <label class="mr-sm-2" for="inlineFormCustomSelect">ORDENADOR POR:</label>
+            <select name="ordenarProducts" required>
+              <option value="category">Categoria</option>
+              <option value="name">Nombre</option>
+              <option value="price">Precio</option>
+              <option value="sales">Lo más vendido</option>
+              <option value="votes">Lo más votado</option>
+            </select>
+            <select name="ascdesc" class="custom-select mb-2 mr-sm-2 mb-sm-0" required>
+              <option value="ASC">Ascendente</option>
+              <option value="DESC">Descendente</option>
+            </select>
+          <button type="submit" name="ordenarProductos" class="btn btn-primary">Ordenar</button>
+        </form><br><br><hr>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Categoria</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Ventas</th>
+            <th>Votos</th>
+          </tr>
+        </thead>
+        <tbody>
+      <?php
+
+        
+if(isset($productos_ordenados)){
+  $lista_productos=$productos_ordenados;
+}
+
+        foreach ($lista_productos as $pr ) { 
+          
+           echo '<tr>';
+            echo '<td><img src="'.$pr->getImagen().'" width="150" height="150" class="img-responsive"></td>';
+            echo '<td>'.$pr->getCategoria().'</td>';
+            echo '<td>'.$pr->getNombre().'</td>';
+            echo '<td>'.$pr->getPrecio().'€</td>';
+            echo '<td>'.$pr->getVentas().'</td>';
+            echo '<td>'.$pr->getVotos().'</td>';
+
+            echo '<td><a href="index.php?tienda&comprar='.$pr->getId().'"><span class="glyphicon glyphicon-shopping-cart"></span>Añadir al carrito</a></td>';
+             echo '<td><a href="#"><span class="glyphicon glyphicon-star"></span>Votar</a></td>';
+
+          echo '</tr>'; 
+          
+        }
+      
+
+      ?>
+     
+    </tbody>
+  </table>
+  </div>
+  </div>
+</div>
+</div>
+

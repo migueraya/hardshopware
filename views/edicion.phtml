@@ -1,0 +1,55 @@
+<?php
+
+$id=$_GET['editaPost'];
+$consulta="SELECT * FROM posts WHERE id=".$id."";
+$result=$mysqli->query($consulta);
+$row=$result->fetch_array(MYSQLI_ASSOC);
+
+
+?>
+
+<div class="container" style="border:1px solid lightblue">
+
+<div id="formularioPost" class="container">
+	<div class="col-sm-10">
+<form action="index.php?perfil" method="post">
+	<center><h3> EDITAR POST</center> </h3><hr>
+  <div class="form-group">
+          <h4> Categoria </h4>
+    <select id="selectCategoria" name="selectCategoria" class="selectpicker" required >
+        <option value="">Seleccionar</option>
+        <option value="Portatiles">Portatiles</option>
+        <option value="Perifericos">Perifericos</option>
+        <option value="Monitores">Monitores</option>
+        <option value="Gaming">Gaming</option>
+        <option value="Ordenadores">Ordenadores</option>
+        <option value="Consolas">Consolas</option>
+    </select>
+  </div>  
+  <div class="form-group">
+    <label for="titulo">Título:</label>
+    <input type="text" class="form-control" id="titulo" value="<?php echo $row['tittle']; ?>" name="titulo" required>
+  </div>
+  <div class="form-group">
+    <label for="fecha">Fecha</label>
+    <input type="date" class="form-control" id="fecha" name="fecha" value="<?php echo $row['date']; ?>" required>
+  </div>
+  	
+  <div class="form-group">
+  	<label for="texto">Post</label>
+  <textarea class="form-control" rows="5" id="texto" name="texto" required><?php echo $row['text']; ?></textarea>
+  </div>
+   <input type="hidden" class="form-control" id="idPost" name="idPost" value="<?php echo $row['id']; ?>" required>
+  <input type="hidden" class="form-control" id="autor" name="autor" value="<?php echo $_SESSION['login']->getNombre(); ?>" required>	
+<button type="submit" name="actualizarPost" class="btn btn-warning pull-left">ACTUALIZAR</button>
+</form>
+
+
+</div>
+  
+
+
+</div>
+
+
+</div>	

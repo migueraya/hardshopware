@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="../js/validarRegistro.js"></script>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        input[type=email], input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        
+        .container {
+            padding: 16px;
+        }
+
+        label{
+            display: block;
+        }
+
+        label.error{
+            color:red;
+        }
+
+
+    </style>
+
+   
+</head>
+<body>
+
+
+
+<form id="formularioNuevo" action="index.php" method="POST">
+  
+  <div class="container">
+
+    <h2>Regístrate</h2>
+
+    <hr>
+
+    <label for="email"><b>Correo electrónico</b></label></br>
+    <input type="email" placeholder="Escribe tu email" name="email" >
+
+    <label for="usuario"><b>Usuario</b></label>
+    <input type="text" placeholder="Escribe tu nombre de usuario" name="usuario" >
+
+    <label for="contraseña"><b>Contraseña</b></label>
+    <input type="password" placeholder="Escribe tu contraseña" name="contraseña" id="passRegistro" >
+
+    <label for="repite"><b>Repetir contraseña</b></label>
+    <input type="password" placeholder="Escribe la misma contraseña" name="repite">
+        
+    <br><button id="registrar" name="registrar" type="submit">Regístrate</button>
+    </form>
+
+    <br><br>  
+     <a href="index.php" role="button"><span class="gslyphicon glyphicon-arrow-left"></span>VOLVER A HARDSHOPWARE</a><br><br>
+     <span> ¿Ya tienes una cuenta? <a href="index.php?login"> Loguéate </span>
+
+
+  </div>
+
+  
+
+
+</body>
+</html>
